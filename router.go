@@ -26,38 +26,38 @@ func (r *Router) SetMaxBodyBytes(n int64) {
 	r.maxBodyBytes = n
 }
 
-func (r *Router) Handle(method, pattern string, h ContextHandler) {
+func (r *Router) handle(method, pattern string, h ContextHandler) {
 	r.Router.Handle(method, pattern, Handle(r.ctx, h, r.maxBodyBytes))
 }
 
 func (r *Router) HandleFunc(method, pattern string, h func(context.Context, ResponseWriter, *Request)) {
-	r.Handle(method, pattern, ContextHandlerFunc(h))
+	r.handle(method, pattern, ContextHandlerFunc(h))
 }
 
 func (r *Router) HEAD(pattern string, h ContextHandler) {
-	r.Handle("HEAD", pattern, h)
+	r.handle("HEAD", pattern, h)
 }
 
 func (r *Router) OPTIONS(pattern string, h ContextHandler) {
-	r.Handle("OPTIONS", pattern, h)
+	r.handle("OPTIONS", pattern, h)
 }
 
 func (r *Router) GET(pattern string, h ContextHandler) {
-	r.Handle("GET", pattern, h)
+	r.handle("GET", pattern, h)
 }
 
 func (r *Router) POST(pattern string, h ContextHandler) {
-	r.Handle("POST", pattern, h)
+	r.handle("POST", pattern, h)
 }
 
 func (r *Router) PUT(pattern string, h ContextHandler) {
-	r.Handle("PUT", pattern, h)
+	r.handle("PUT", pattern, h)
 }
 
 func (r *Router) DELETE(pattern string, h ContextHandler) {
-	r.Handle("DELETE", pattern, h)
+	r.handle("DELETE", pattern, h)
 }
 
 func (r *Router) PATCH(pattern string, h ContextHandler) {
-	r.Handle("PATCH", pattern, h)
+	r.handle("PATCH", pattern, h)
 }
